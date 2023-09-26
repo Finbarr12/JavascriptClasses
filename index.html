@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Guess the Number Game</title>
+  </head>
+  <body>
+    <h1>Guess the Number Game</h1>
+    <p>Guess a number between 1 and 100:</p>
+    <input type="number" id="guessField" />
+    <input type="submit" value="Submit Guess" id="guessSubmit" />
+    <p class="message"></p>
+
+    <script>
+      // Generate a random number between 1 and 100
+      const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+      // Get references to DOM elements
+      const guessField = document.getElementById("guessField");
+      const guessSubmit = document.getElementById("guessSubmit");
+      const message = document.querySelector(".message");
+
+      // Variables to keep track of the game state
+      let guessCount = 0;
+      let guesses = [];
+      let gameOver = false;
+
+      // Function to check the player's guess
+      function checkGuess() {
+        const userGuess = Number(guessField.value);
+
+        // Add the guess to the list of previous guesses
+        guesses.push(userGuess);
+
+        // Increment the guess count
+        guessCount++;
+
+        console.log(randomNumber);
+
+        if (userGuess === randomNumber) {
+          message.textContent = `Congratulations! You guessed the correct number in ${guessCount} guesses.`;
+          gameOver = true;
+        } else if (guessCount === 10) {
+          message.textContent = `Game over! The correct number was ${randomNumber}.`;
+          gameOver = true;
+        } else {
+          const lastGuess = guesses[guesses.length - 2];
+          const difference = Math.abs(randomNumber - userGuess);
+          const lastDifference = Math.abs(randomNumber - lastGuess);
+
+          if (difference < lastDifference) {
+            message.textContent = "Warmer";
+          } else {
+            message.textContent = "Colder";
+          }
+        }
+
+        if (gameOver) {
+          guessField.disabled = true;
+          guessSubmit.disabled = true;
+        }
+
+        guessField.value = "";
+        guessField.focus();
+      }
+
+      guessSubmit.addEventListener("click", checkGuess);
+    </script>
+  </body>
+</html>

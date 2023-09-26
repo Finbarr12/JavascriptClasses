@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock, Paper, Scissors Game</title>
+  </head>
+  <body>
+    <h1>Rock, Paper, Scissors Game</h1>
+    <p>Choose your move:</p>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    <p id="result"></p>
+
+    <script>
+      const choices = ["rock", "paper", "scissors"];
+      const computerChoice = () => choices[Math.floor(Math.random() * 3)];
+
+      const rockButton = document.getElementById("rock");
+      const paperButton = document.getElementById("paper");
+      const scissorsButton = document.getElementById("scissors");
+      const resultMessage = document.getElementById("result");
+
+      rockButton.addEventListener("click", () => playGame("rock"));
+      paperButton.addEventListener("click", () => playGame("paper"));
+      scissorsButton.addEventListener("click", () => playGame("scissors"));
+
+      function playGame(playerChoice) {
+        const compChoice = computerChoice();
+
+        if (playerChoice === compChoice) {
+          resultMessage.textContent = "It's a tie!";
+        } else if (
+          (playerChoice === "rock" && compChoice === "scissors") ||
+          (playerChoice === "paper" && compChoice === "rock") ||
+          (playerChoice === "scissors" && compChoice === "paper")
+        ) {
+          resultMessage.textContent = `You win! Computer chose ${compChoice}.`;
+        } else {
+          resultMessage.textContent = `Computer wins! Computer chose ${compChoice}.`;
+        }
+      }
+    </script>
+  </body>
+</html>
