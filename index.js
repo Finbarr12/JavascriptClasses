@@ -179,3 +179,11 @@ console.log(shiftArr);
 let names = [1, 2, 3, 4, 5, 6, 7];
 let reversedArr = names.reverse();
 console.log(reversedArr);
+
+let varia = "man";
+console.log(varia + " woman");
+console.log(`${varia} woman`);
+
+// '' - single quote
+// "" - double quote
+// `` - bakticks
