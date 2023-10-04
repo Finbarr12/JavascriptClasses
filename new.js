@@ -25,3 +25,14 @@ console.log(getSec);
 
 const setDate = new Date(2021, 2, 5);
 console.log("Set date ", setDate);
+
+const dateToString = new Date().toString();
+console.log(dateToString.slice(0, 15));
+
+const setDateFormat = new Intl.DateTimeFormat("en-Us", {
+  year: "2-digit",
+  month: "2-digit",
+  day: "2-digit",
+}).format(date);
+
+console.log(setDateFormat);
